@@ -1,17 +1,11 @@
 <!-- /assignment/templates/index.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block head %}<title>Landing Page</title>{% endblock %}
+{% block body %}
     <h1>Welcome to the Landing Page</h1>
     <p>Choose a project to explore:</p>
     <ul>
         <li><a href="/assignment">Go to Task Master Project</a></li>
-        <li><a href="#">Go to Final Project (TBU)</a></li>
+        <li><a href="/final_project">Go to Final Project</a></li>
     </ul>
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Project List</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="form-container">
+    
+    <h1>Project List</h1>
+    <form action="/final_project" method="POST" enctype="multipart/form-data">
+
+        <label for="PT">Project Task:</label><br/>
+        <input type="text" name="pTask" id="pTask" required><br><br> 
+
+        <!-- Dropdown -->
+        <label for="Project-type">Category:</label><br/>
+        <select id="task-type" name="task_type" required>
+            <option value="">Select Task Type</option>
+            <option value="AWS">AWS</option>
+            <option value="project">Project Submission</option>
+            <option value="presentation">Presentation</option>
+        </select>
+        <br><br> 
+
+        <label for="priority">Priority (1-5):</label><br/>
+        <input type="number" name="pr" id="pr" min="1" max="5" required><br><br> 
+
+        <label for="due-date">Due Date:</label><br/>
+        <input type="date" id="due-date" name="due_date" required>
+        <br><br>
+        
+        <!-- File Upload -->
+        <label for="file-upload">Upload File:</label><br/>
+        <input type="file" id="file-upload" name="file_upload" required>
+        <br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Add Project" id="sub">
+    </form>
+    
+    <h1>Existing Projects</h1>
+    {% if projects|length < 1 %}
+        <h4 style="text-align: center">There are no projects. Add one below!</h4>
+        {% else %}
+    <table>
+    <tr>
+        <th>Priority</th>
+        <th>Category</th>
+        <th>Due-Date</th>
+        <th>Document</th>
+        <th>Actions</th>
+    </tr>
+    {% for project in projects %}
+    <tr>
+        <td>{{project.priority}}</td>
+        <td>{{project.category}}</td>
+        <td>{{project.due_date}}</td>
+        <td>
+            <a href="{{ url_for('static', filename='uploads/' + project.file_name) }}">{{ project.file_name }}</a>
+        </td>
+        <td>
+            <a href="/delete_form/{{project.id}}">Delete</a>
+            <br>
+            <a href="/update_form/{{project.id}}">Update</a>
+        </td>
+    </tr> 
+    {% endfor %}
+</table>
+{% endif %}
+</div>
+
+{% endblock %}

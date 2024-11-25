@@ -34,3 +34,32 @@ td {
 #content {
     width: 70%;
 }
+body .form-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    background-color: burlywood;
+    border-radius: 9px;
+}
+
+input{
+    width: 200px;
+    height: 21px;
+}
+select{
+    width: 195px;
+    height: 27px;
+}
+
+input[type="submit"] {
+    background-color: black;
+    color: white;
+    width: 220px;
+    border-radius: 7px;
+    height: 36px;
+    cursor: pointer;
+}
