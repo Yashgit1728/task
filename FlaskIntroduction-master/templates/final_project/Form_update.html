@@ -28,12 +28,10 @@
         <input type="date" id="due-date" name="due_date" value="{{ project.due_date }}" required><br/><br/>
 
         <!-- Current File Display -->
-        <label for="current-file">Current File:</label><br/>
-        <p>{{ project.file_name }}</p>
-        <br/>
+       
 
         <!-- File Upload -->
-        <label for="file-upload">Replace File (Optional):</label><br/>
+        <label for="file-upload">Replace File:</label><br/>
         <input type="file" id="file-upload" name="file_upload"><br/><br/>
 
         <button type="submit">Update Project</button>

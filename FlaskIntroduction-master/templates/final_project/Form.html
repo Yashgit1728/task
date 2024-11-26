@@ -58,7 +58,9 @@
         <td>{{project.category}}</td>
         <td>{{project.due_date}}</td>
         <td>
-            <a href="{{ url_for('static', filename='uploads/' + project.file_name) }}">{{ project.file_name }}</a>
+            <a href="{{ url_for('static', filename='uploads/' + project.file_name) }}" >
+                <img src="{{ url_for('static', filename='uploads/' + project.file_name) }}" alt="{{ project.file_name }}" style="max-width: 50px; max-height: 50px;">
+            </a>
         </td>
         <td>
             <a href="/delete_form/{{project.id}}">Delete</a>
