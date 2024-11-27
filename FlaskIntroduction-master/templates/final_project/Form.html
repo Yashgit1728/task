@@ -47,19 +47,13 @@
         <table class="table_style">
             <tr>
                 <th>
-                    <a href="?sort_column=priority&sort_order={{ 'desc' if sort_column == 'priority' and sort_order == 'asc' else 'asc' }}">
-                        Priority
-                    </a>
+                    <a href="?sort_column=priority">Priority</a>
                 </th>
                 <th>
-                    <a href="?sort_column=category&sort_order={{ 'desc' if sort_column == 'category' and sort_order == 'asc' else 'asc' }}">
-                        Category
-                    </a>
+                    <a href="?sort_column=category">Category</a>
                 </th>
                 <th>
-                    <a href="?sort_column=due_date&sort_order={{ 'desc' if sort_column == 'due_date' and sort_order == 'asc' else 'asc' }}">
-                        Due Date
-                    </a>
+                    <a href="?sort_column=due_date">Due Date</a>
                 </th>
         <th>Content</th>
         <th>Document</th>
@@ -77,7 +71,7 @@
             </a>
         </td>
         <td>
-             <a href="/update_form/{{project.id}}">Update</a>
+             <a href="/update_form/{{project.id}}" style="padding-bottom: 10px;">Update</a>
             <br>
             <form action="/delete_form/{{ project.id }}" method="POST" style="display: inline;">
                 <button type="submit" id="del">

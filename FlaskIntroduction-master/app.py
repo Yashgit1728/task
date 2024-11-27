@@ -3,8 +3,7 @@ from models import db, Todo, Project
 import os
 from datetime import datetime
 from flask import current_app
-from sqlalchemy import asc, desc
-
+from sqlalchemy import asc
 
 
 app = Flask(__name__)
@@ -44,6 +43,7 @@ def form():
             priority = int(request.form['pr'])
             due_date_str = request.form['due_date']
             file = request.files['file_upload']
+            
 
             # Convert due_date_str to datetime.date
             due_date = datetime.strptime(due_date_str, '%Y-%m-%d').date()
@@ -61,7 +61,8 @@ def form():
                 category=category,
                 priority=priority,
                 due_date=due_date,
-                file_name=file.filename
+                file_name=file.filename,
+               
             )
 
             # Save to the database
@@ -75,8 +76,23 @@ def form():
 
     else:
         # Fetch all projects to display
-        projects = Project.query.order_by(Project.date_created).all()
-        return render_template('/final_project/Form.html', projects=projects)
+        sort_column = request.args.get('sort_column', 'priority') 
+
+        # Valid columns for sorting
+        valid_columns = ['priority', 'category', 'due_date']
+
+        # Ensure sort_column is a valid column
+        if sort_column not in valid_columns:
+            sort_column = 'priority'  # Default to 'priority' if invalid sort_column is provided
+
+        # Build dynamic sort query (ascending only)
+        sort_query = asc(getattr(Project, sort_column))
+
+        # Fetch all projects and sort
+        projects = Project.query.order_by(sort_query).all()
+
+        return render_template('/final_project/Form.html', projects=projects, sort_column=sort_column)
+
 
 
 # Delete and update paths
@@ -149,28 +165,6 @@ def Formupdate(id):
             return f"There was an issue updating your project: {e}"
 
     return render_template('/final_project/Form_update.html', project=project)
-
-
-@app.route('/final_project')
-def table_route():
-    # Default sorting parameters
-    sort_column = request.args.get('sort_column', 'id')  # Default column to sort by
-    sort_order = request.args.get('sort_order', 'asc')  # Default sort order (ascending)
-
-    # Dynamically determine sort order
-    if sort_order == 'desc':
-        sort_query = getattr(Project, sort_column).desc()
-    else:
-        sort_query = getattr(Project, sort_column).asc()
-
-    # Query the database and sort
-    projects = Project.query.order_by(sort_query).all()
-
-    # Pass sorted data to the template
-    return render_template('Form.html', projects=projects, sort_column=sort_column, sort_order=sort_order)
-
-
-
 
 if __name__ == "__main__":
     with app.app_context():

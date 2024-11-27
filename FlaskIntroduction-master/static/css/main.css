@@ -72,6 +72,9 @@ input[type="submit"] {
 .table_style{
     width:90%;
 }
+.table_style tr:hover{
+    background-color: dimgray;
+}
 
 #del{
     background-color: black;
