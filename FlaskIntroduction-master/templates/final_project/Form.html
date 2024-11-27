@@ -44,11 +44,24 @@
     {% if projects|length < 1 %}
         <h4 style="text-align: center">There are no projects. Add one below!</h4>
         {% else %}
-    <table>
-    <tr>
-        <th>Priority</th>
-        <th>Category</th>
-        <th>Due-Date</th>
+        <table class="table_style">
+            <tr>
+                <th>
+                    <a href="?sort_column=priority&sort_order={{ 'desc' if sort_column == 'priority' and sort_order == 'asc' else 'asc' }}">
+                        Priority
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort_column=category&sort_order={{ 'desc' if sort_column == 'category' and sort_order == 'asc' else 'asc' }}">
+                        Category
+                    </a>
+                </th>
+                <th>
+                    <a href="?sort_column=due_date&sort_order={{ 'desc' if sort_column == 'due_date' and sort_order == 'asc' else 'asc' }}">
+                        Due Date
+                    </a>
+                </th>
+        <th>Content</th>
         <th>Document</th>
         <th>Actions</th>
     </tr>
@@ -57,20 +70,30 @@
         <td>{{project.priority}}</td>
         <td>{{project.category}}</td>
         <td>{{project.due_date}}</td>
+        <td>{{project.task}}</td>
         <td>
             <a href="{{ url_for('static', filename='uploads/' + project.file_name) }}" >
                 <img src="{{ url_for('static', filename='uploads/' + project.file_name) }}" alt="{{ project.file_name }}" style="max-width: 50px; max-height: 50px;">
             </a>
         </td>
         <td>
-            <a href="/delete_form/{{project.id}}">Delete</a>
+             <a href="/update_form/{{project.id}}">Update</a>
             <br>
-            <a href="/update_form/{{project.id}}">Update</a>
+            <form action="/delete_form/{{ project.id }}" method="POST" style="display: inline;">
+                <button type="submit" id="del">
+                    Delete
+                </button>
+            </form>
         </td>
     </tr> 
     {% endfor %}
 </table>
 {% endif %}
+<div style="text-align: center; margin-top:20px;">
+    <a href="/">Go back to homepage</a>
 </div>
+</div>
+
+
 
 {% endblock %}

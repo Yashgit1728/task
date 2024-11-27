@@ -10,6 +10,8 @@
 
     <div class="form">
         <form action="/update_form/{{project.id}}" method="POST" enctype="multipart/form-data">
+
+        
         <label for="pTask">Project Task:</label><br/>
         <input type="text" name="pTask" id="pTask" value="{{ project.task }}" required><br/><br/>
 
@@ -27,6 +29,7 @@
         <label for="due-date">Due Date:</label><br/>
         <input type="date" id="due-date" name="due_date" value="{{ project.due_date }}" required><br/><br/>
 
+        
         <!-- Current File Display -->
        
 
@@ -37,5 +40,10 @@
         <button type="submit">Update Project</button>
         </form>
     </div>
+    <div style="text-align: left; margin-top:20px;">
+        <a href="/final_project">Cancel</a>
+  </div>
 </div>
+
+
 {% endblock %}

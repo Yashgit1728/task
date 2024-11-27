@@ -10,7 +10,8 @@ body, html {
 }
 
 table, td, th {
-    border: 1px solid #aaa;
+    border-width:0px;
+    border-bottom: 1px solid #fff;
 }
 
 table {
@@ -61,5 +62,22 @@ input[type="submit"] {
     width: 220px;
     border-radius: 7px;
     height: 36px;
+    cursor: pointer;
+}
+.table_style th{
+     background-color: white;
+     height:40px;
+}
+
+.table_style{
+    width:90%;
+}
+
+#del{
+    background-color: black;
+    color: white;
+    width: 75px;
+    border-radius: 7px;
+    height: 30px;
     cursor: pointer;
 }
