@@ -1,32 +1,32 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Project Updates</title>
+<title>Employee updates</title>
 {% endblock %}
 
 {% block body %}
 <div class="form-container">
-    <h1 style="text-align: center">Update project</h1>
+    <h1 style="text-align: center">Update Employee Details</h1>
 
     <div class="form">
         <form action="/update_form/{{project.id}}" method="POST" enctype="multipart/form-data">
 
         
-        <label for="pTask">Project Task:</label><br/>
+        <label for="pTask">Employee Name:</label><br/>
         <input type="text" name="pTask" id="pTask" value="{{ project.task }}" required><br/><br/>
 
-        <label for="task-type">Category:</label><br/>
+        <label for="task-type">Employee Role:</label><br/>
         <select id="task-type" name="task_type" required>
-            <option value="assignment" {% if project.category == 'assignment' %}selected{% endif %}>AWS</option>
-            <option value="project" {% if project.category == 'project' %}selected{% endif %}>Project Submission</option>
-            <option value="presentation" {% if project.category == 'presentation' %}selected{% endif %}>Presentation</option>
+            <option value="Cloud Architect" {% if project.category == 'Cloud Architect' %}selected{% endif %}>Cloud Architect</option>
+            <option value="Cybersecurity Analyst" {% if project.category == 'Cybersecurity Analyst' %}selected{% endif %}>Cybersecurity Analyst</option>
+            <option value="Software Developer" {% if project.category == 'Software Developer' %}selected{% endif %}>Software Developer</option>
         </select>
         <br/><br/>
 
-        <label for="pr">Priority:</label><br/>
+        <label for="pr">Proficiency Level (1-5):</label><br/>
         <input type="number" name="pr" id="pr" min="1" max="5" value="{{ project.priority }}" required><br/><br/>
 
-        <label for="due-date">Due Date:</label><br/>
+        <label for="due-date">Joining Date:</label><br/>
         <input type="date" id="due-date" name="due_date" value="{{ project.due_date }}" required><br/><br/>
 
         
@@ -34,10 +34,10 @@
        
 
         <!-- File Upload -->
-        <label for="file-upload">Replace File:</label><br/>
+        <label for="file-upload">Replace Resume:</label><br/>
         <input type="file" id="file-upload" name="file_upload"><br/><br/>
 
-        <button type="submit">Update Project</button>
+        <button type="submit">Update Employee</button>
         </form>
     </div>
     <div style="text-align: left; margin-top:20px;">

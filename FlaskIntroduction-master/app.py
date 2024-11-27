@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect, flash
+from flask import Flask, render_template, url_for, request, redirect
 from models import db, Todo, Project
 import os
 from datetime import datetime
@@ -62,7 +62,6 @@ def form():
                 priority=priority,
                 due_date=due_date,
                 file_name=file.filename,
-               
             )
 
             # Save to the database
@@ -76,14 +75,14 @@ def form():
 
     else:
         # Fetch all projects to display
-        sort_column = request.args.get('sort_column', 'priority') 
+        sort_column = request.args.get('sort_column', 'task') 
 
         # Valid columns for sorting
-        valid_columns = ['priority', 'category', 'due_date']
+        valid_columns = ['task', 'category', 'due_date']
 
         # Ensure sort_column is a valid column
         if sort_column not in valid_columns:
-            sort_column = 'priority'  # Default to 'priority' if invalid sort_column is provided
+            sort_column = 'task'  # Default to 'priority' if invalid sort_column is provided
 
         # Build dynamic sort query (ascending only)
         sort_query = asc(getattr(Project, sort_column))
